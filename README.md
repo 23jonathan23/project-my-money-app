@@ -22,6 +22,7 @@
 - lodash
 - redux
 - react
+- redux-form
 - redux-multi
 - redux-promise
 - redux-thunk
