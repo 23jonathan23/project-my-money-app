@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { selectTab, showTabs } from '../../store/actions/tabAction'
+import { create } from '../../store/actions/billingCycleAction'
 
 import ContentHeader from '../../components/Content/ContentHeader/ContentHeader'
 import Content from '../../components/Content/Content'
@@ -11,6 +12,8 @@ import TabsHeader from '../../components/Tab/TabsHeader/TabsHeader'
 import TabsContent from '../../components/Tab/TabsContent/TabsContent'
 import TabHeader from '../../components/Tab/TabsHeader/TabHeader/TabHeader'
 import TabContent from '../../components/Tab/TabsContent/TabContent/TabContent'
+import List from '../../components/BillingCycleList/BillingCycleList'
+import Form from '../../components/BillingCycleForm/BillingCycleForm'
 
 class BillingCicle extends Component {
   componentWillMount() {
@@ -32,13 +35,13 @@ class BillingCicle extends Component {
             </TabsHeader>
             <TabsContent>
               <TabContent id='tabList'>
-                <h1>Lista</h1>
+                <List />
               </TabContent>
               <TabContent id='tabCreate'>
-                <h1>Incluir</h1>
+                <Form onSubmit={this.props.create} />
               </TabContent>
               <TabContent id='tabUpdate'>
-                <h1>Alterar</h1>
+                <Form />
               </TabContent>
               <TabContent id='tabDelete'>
                 <h1>Excluir</h1>
@@ -52,7 +55,7 @@ class BillingCicle extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectTab, showTabs }, dispatch)
+  return bindActionCreators({ selectTab, showTabs, create }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(BillingCicle)
