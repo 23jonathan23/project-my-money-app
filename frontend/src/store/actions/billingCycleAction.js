@@ -6,7 +6,7 @@ import { selectTab, showTabs } from '../actions/tabAction'
 import { BILLING_CYCLES_FETCHED } from './actionsType'
 import api from '../../services/api'
 
-const INITIAL_VALUES = {}
+const INITIAL_VALUES = { credits: [{}], debits: [{}] }
 
 export const getList = () => {
   const request = api.get('/billingCycles')
@@ -17,9 +17,21 @@ export const getList = () => {
 }
 
 export const create = values => {
+  return submit(values, 'post')
+}
+
+export const update = values => {
+  return submit(values, 'put')
+}
+
+export const remove = values => {
+  return submit(values, 'delete')
+}
+
+function submit(values, method) {
+  const id = values._id ? values._id : ''
   return dispatch => {
-    api
-      .post('/billingCycles', values)
+    api[method](`/billingCycles/${id}`, values)
       .then(resp => {
         toastr.success('Sucesso', 'Operação Realizada com sucesso.')
         dispatch(init())
@@ -33,10 +45,10 @@ export const create = values => {
   }
 }
 
-export const showUpdate = billingCycle => {
+export const showTab = (billingCycle, tab) => {
   return [
-    showTabs('tabUpdate'),
-    selectTab('tabUpdate'),
+    showTabs(tab),
+    selectTab(tab),
     initialize('billingCycleForm', billingCycle),
   ]
 }
