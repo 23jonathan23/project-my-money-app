@@ -1,5 +1,7 @@
 # My Money
 
+O projeto é um controlador de receitas e despesas ou seja controle de ciclos de pagamentos,o projeto foi desenvolvido como trabalho de conclusão do curso de React & Redux da Cod3r, utilizando no backend Node.js e no frontend React & Redux.
+
 ## Demais tecnologias usadas:
 - body-parser
 - express
@@ -22,6 +24,7 @@
 - lodash
 - redux
 - react
+- redux-form
 - redux-multi
 - redux-promise
 - redux-thunk
