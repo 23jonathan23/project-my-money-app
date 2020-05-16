@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import dashboardReducer from './reducers/dashboardReducer'
 import tabReducer from './reducers/tabReducer'
 import billingCycleReducer from './reducers/billingCycleReducer'
+import authReducer from './reducers/authReducer'
 
 //Plugin redux, para desenvolvedor
 const devTools =
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   billingCycle: billingCycleReducer,
   form: formReducer,
   toastr: toastrReducer,
+  auth: authReducer,
 })
 
 function storeConfig() {

@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
       req.body.token || req.query.token || req.headers['authorization']
 
     if (!token) {
+      console.log(token)
       return res.status(403).send({ errors: ['No token provided'] })
     }
 

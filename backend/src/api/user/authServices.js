@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const User = require('./user')
 const env = require('../../.env')
 
-const emailRegex = /\S+@\S+\.S+/ //validar email
+const emailRegex = /\S+@\S+\.\S+/ //validar email
 const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/ //validar senha
 
 const sendErrorsFromDB = (res, dbErrors) => {
@@ -21,9 +21,19 @@ const login = (req, res, next) => {
     if (err) {
       return sendErrorsFromDB(res, err)
     } else if (user && bcrypt.compareSync(password, user.password)) {
-      const token = jwt.sign(user, env.authSecret, {
-        expiresIn: '1 day',
-      })
+      console.log(user)
+      const token = jwt.sign(
+        {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          password: user.password,
+        },
+        env.authSecret,
+        {
+          expiresIn: '1 day',
+        }
+      )
       const { name, email } = user
       res.json({ name, email, token })
     } else {
