@@ -16,7 +16,6 @@ class Dashboard extends Component {
 
   render() {
     const { credit, debit } = this.props.summary
-    console.log(this.props.summary)
     return (
       <div>
         <ContentHeader title='Dashboard' small='Versão 1.0' />
